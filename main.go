@@ -1,9 +1,9 @@
 package main
 
 import (
-	"go_algorithm/CF/daily"
-
 	"os"
+
+	"github.com/Yoda-wu/go_algorithm/CF/daily"
 )
 
 func main() {
