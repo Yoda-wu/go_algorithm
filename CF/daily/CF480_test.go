@@ -1,4 +1,4 @@
-package daily
+package cf_daily
 
 import (
 	"strings"
