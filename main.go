@@ -1,12 +1,17 @@
 package main
 
 import (
-	"os"
+	"fmt"
+)
 
-	cf_daily "github.com/Yoda-wu/go_algorithm/CF/daily"
+const (
+	A = 2
+	B = 3
 )
 
 func main() {
-	cf_daily.CF480C(os.Stdin, os.Stdout)
+	var f [A][B]int
+	f[1][1] = 0
+	fmt.Println(f[1][1])
 
 }

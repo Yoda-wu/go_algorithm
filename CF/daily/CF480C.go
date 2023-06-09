@@ -1,14 +1,14 @@
 package cf_daily
 
 import (
-	. "fmt"
+	"fmt"
 	"io"
 )
 
 func CF480C(in io.Reader, out io.Writer) {
 	const mod = 1_000_000_007
 	var n, a, b, k int
-	Fscan(in, &n, &a, &b, &k)
+	fmt.Fscan(in, &n, &a, &b, &k)
 	if a > b {
 		a = n + 1 - a
 		b = n + 1 - b
@@ -28,5 +28,5 @@ func CF480C(in io.Reader, out io.Writer) {
 	for _, v := range f {
 		ans += int64(v)
 	}
-	Fprint(out, (ans%mod+mod)%mod)
+	fmt.Fprint(out, (ans%mod+mod)%mod)
 }
