@@ -72,10 +72,36 @@ func AssertEqualString(t *testing.T, testCases [][2]string, runFunc ioFunc) {
 	t.Log("ok!")
 }
 
-func AssertEqualCase(t *testing.T, rawText string, runFunc ioFunc){
-	
-}
+func AssertEqualCase(t *testing.T, rawText string, runFunc ioFunc) {
+	rawText = strings.TrimSpace(rawText)
+	/*  rawText = '
+	input
+	3 9
+	output
+	3
+	input
+	5 8
+	output
+	'
+	*/
+	if rawText == "" {
+		return
+	}
+	testCases := [][2]string{}
+	sepInput := "input"
+	sepOutput := "output"
+	examples := strings.Split(rawText, sepInput)
+	for _, s := range examples {
+		s = strings.TrimSpace(s)
+		if s != "" {
+			splits := strings.Split(s, sepOutput)
+			testCases = append(testCases, [2]string{splits[0], splits[1]})
+		}
+	}
 
+	AssertEqualString(t, testCases, runFunc)
+
+}
 
 // -------------------- helper --------------------
 func removeExtraSpace(s string) string {
