@@ -72,6 +72,8 @@ func AssertEqualString(t *testing.T, testCases [][2]string, runFunc ioFunc) {
 	t.Log("ok!")
 }
 
+
+// -------------------- helper --------------------
 func removeExtraSpace(s string) string {
 	s = strings.TrimSpace(s)
 	sp := strings.Split(s, "\n")
@@ -82,5 +84,5 @@ func removeExtraSpace(s string) string {
 }
 
 func handleOutput(t *testing.T, s string) {
-	t.Log("actual output = %s\n", s)
+	t.Logf("actual output = %s\n", s)
 }
