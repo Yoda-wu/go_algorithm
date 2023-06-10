@@ -72,6 +72,10 @@ func AssertEqualString(t *testing.T, testCases [][2]string, runFunc ioFunc) {
 	t.Log("ok!")
 }
 
+func AssertEqualCase(t *testing.T, rawText string, runFunc ioFunc){
+	
+}
+
 
 // -------------------- helper --------------------
 func removeExtraSpace(s string) string {
