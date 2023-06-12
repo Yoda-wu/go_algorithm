@@ -1,0 +1,6 @@
+package tree
+
+
+interface SegmentTree {
+	query()
+}
