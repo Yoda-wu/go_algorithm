@@ -1,4 +1,4 @@
-package tree
+package ds_tree	
 
 
 interface SegmentTree {
@@ -61,7 +61,7 @@ func (st *SegmentTreeImpl) query(o,l,r, L, R int) int {
 	if R > mid {
 		sum += query(o*2+1, mid+1, r, L, R)
 	}
-	
+
 
 	return sum
 
