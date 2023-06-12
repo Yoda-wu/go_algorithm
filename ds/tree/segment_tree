@@ -2,5 +2,67 @@ package tree
 
 
 interface SegmentTree {
-	query()
+	Query(l, r int) int
+	Update(o,l, r,idx v int) 
+
+}
+type SegmentTreeImpl struct {
+	tree []int
+	n int
+}
+
+func NewSegmentTree(n int) SegmentTree {
+	return &SegmentTreeImpl{
+		tree: make([]int, n * 4),
+		n: n,
+	}
+}
+
+// Query 查询区间值 
+func (st *SegmentTreeImpl) Query(l, r int) int {
+	return 0
+}
+
+// add 修改区间值 线段树的左节点是2*i， 右节点是2*i+1
+// o: 当前节点下标
+// l, r: 当前节点对应的区间
+// idx: 更新的下标
+// v：更新的值
+func (st *SegmentTreeImpl) add(o,l, r,idx v int)  {
+	if l == r {// 叶子节点
+		st.tree[o] += v
+		return
+	}
+	// 递归
+	mid := (l + r) / 2
+	if idx <= mid { // 左子树
+		add(o*2, l, mid, idx, v)
+	}else { // 右子树
+		add(o*2+1, mid+1, r, idx, v)
+	}
+	// 更新当前节点的值
+	st.tree[o] = st.tree[o*2] + st.tree[o*2+1]
+
+}
+
+// query 查询区间值
+// o: 当前节点下标
+// l, r: 当前节点对应的区间
+// L, R: 查询的区间
+func (st *SegmentTreeImpl) query(o,l,r, L, R int) int {
+	if L <= l &&  r <= r {
+		return st.tree[o]
+	} 
+	sum := 0
+	mid := (l + r) / 2
+	if L <= mid {
+		sum += query(o*2, l, mid, L, R)
+	}
+	if R > mid {
+		sum += query(o*2+1, mid+1, r, L, R)
+	}
+	
+
+	return sum
+
 }
