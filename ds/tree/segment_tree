@@ -3,7 +3,7 @@ package ds_tree
 
 interface SegmentTree {
 	Query(l, r int) int
-	Update(o,l, r,idx v int) 
+	Update(idx, v int) 
 
 }
 type SegmentTreeImpl struct {
@@ -20,10 +20,15 @@ func NewSegmentTree(n int) SegmentTree {
 
 // Query 查询区间值 
 func (st *SegmentTreeImpl) Query(l, r int) int {
-	return 0
+	return st.query(1, 1, st.n, l, r)
 }
 
-// add 修改区间值 线段树的左节点是2*i， 右节点是2*i+1
+// Update 单点修改
+func (st *SegmentTreeImpl) Update(idx v int)  {
+	st.add(1, 1, st.n, idx, 1)	
+}
+
+// add 单点修改 线段树的左节点是2*i， 右节点是2*i+1
 // o: 当前节点下标
 // l, r: 当前节点对应的区间
 // idx: 更新的下标
@@ -61,8 +66,6 @@ func (st *SegmentTreeImpl) query(o,l,r, L, R int) int {
 	if R > mid {
 		sum += query(o*2+1, mid+1, r, L, R)
 	}
-
-
 	return sum
 
 }
